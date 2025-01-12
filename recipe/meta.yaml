@@ -12,23 +12,24 @@ source:
     - fix_numpy_requirement.patch
 
 build:
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
   noarch: python
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
   run:
     - numpy
-    - python >=3.6
+    - python >={{ python_min }}
 
 test:
   imports:
     - meg
   requires:
     - pip
+    - python {{ python_min }}
   commands:
     - pip check
 
